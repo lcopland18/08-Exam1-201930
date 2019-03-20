@@ -3,10 +3,11 @@ Exam 1, problem 4.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Lauren Copland.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -80,11 +81,27 @@ def problem4(point1, point2, n, window):
       :type window:  rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # IMPORTANT: For PARTIAL CREDIT, ignore the colors.
     # -------------------------------------------------------------------------
 
+    xdistance = abs(point1.x-point2.x)
+    ydistance = abs(point2.y-point1.y)
+
+    for k in range(2*n + 1):
+        point3 = rg.Point(point1.x + k *(xdistance/(2*n+1)), point1.y + k*(ydistance/(2*n+1)))
+        point3.attach_to(window)
+
+        if (math.sqrt((point3.x-point1.x)**2 + (point3.y-point1.y)**2))> (math.sqrt(xdistance**2+ ydistance**2))/2:
+            point3.fill_color = point1.fill_color
+        else:
+            point3.fill_color = point2.fill_color
+
+    point1.attach_to(window)
+    point2.attach_to(window)
+
+    window.render()
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
