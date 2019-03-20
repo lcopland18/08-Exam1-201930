@@ -3,13 +3,13 @@ Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Lauren Copland.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
 # -----------------------------------------------------------------------------
-# TODO: 2. Right-click on the  src  folder and
+# DONE: 2. Right-click on the  src  folder and
 #              Mark Directory as ... Sources Root,
 #          if you have not already done so.
 # -----------------------------------------------------------------------------
@@ -118,10 +118,30 @@ def problem1(circle, rectangle, color, length, window):
       :type window:    rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
+    circle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    line = rg.Line(rg.Point(circle.center.x,circle.center.y),rg.Point(rectangle.get_center().x,rectangle.get_center().y))
+    line.color = color
+    line.thickness = circle.outline_thickness
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    midline = rg.Line(rg.Point(line.get_midpoint().x,line.get_midpoint().y + (length/2)),rg.Point(line.get_midpoint().x,line.get_midpoint().y - (length/2)))
+    midline.attach_to(window)
+    midline.color = circle.fill_color
+    midline.thickness = circle.outline_thickness + rectangle.outline_thickness
+    window.render()
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
