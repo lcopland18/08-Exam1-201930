@@ -285,7 +285,7 @@ def problem3b(m, x):
            which is approximately 12.020144157845959.
      """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # IGNORE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     ###########################################################################
     ###########################################################################
@@ -294,9 +294,14 @@ def problem3b(m, x):
     #    **  use (call) the appropriate function(s) that are DEFINED ABOVE.
     ###########################################################################
 
-    for k in range(m+1):
-        ((k+1)/())
-
+    count = 0
+    for k in range(((m**4)-(m**2))):
+        if is_prime(k) and is_prime(sum_of_digits(k)):
+            count = count + 1
+    if count >= x:
+        return True
+    else:
+        return False
 ###############################################################################
 # Our tests use the following to print error messages in red.
 # Do NOT change it.  You do NOT have to do anything with it.
